@@ -39,13 +39,10 @@ TP-ANTLR_Compiladores/
 │   ├── main.py                     # driver simple: imprime el árbol sintáctico
 │   ├── commands-showcase.md        # comandos para reproducir las pruebas
 │   └── tests/
-│       ├── entrada0.txt             # consulta verbatim del informe fuente
+│       ├── entrada0.txt             # consulta verbatim  fuente
 │       ├── entrada1.txt ... entrada4.txt   # consultas válidas adicionales
-│       └── error1.txt   ... error4.txt     # consultas inválidas
-└── docs/
-    ├── enunciado-tp-2026-1.pdf     # consigna oficial del curso
-    ├── informe-fuente-tp.docx      # borrador del informe (carátula + secciones)
-    └── QueryBit.original.g4        # gramática original del docx (para diff histórico)
+        └── error1.txt   ... error4.txt     # consultas inválidas
+
 ```
 
 ## 5. Gramática (Hito 1)
@@ -112,7 +109,7 @@ Los casos de prueba viven en `grammar/tests/`. Cada archivo cubre una caracterí
 
 | Archivo | Tipo | Característica que valida |
 |---------|------|---------------------------|
-| `tests/entrada0.txt` | válido | Consulta verbatim del informe fuente (`docs/informe-fuente-tp.docx`, sección "Pruebas"). Combina `SELECT`, `FROM`, `WHERE` con `AND`, `ORDER BY DESC` y `LIMIT`. |
+| `tests/entrada0.txt` | válido | Test inicial. Combina `SELECT`, `FROM`, `WHERE` con `AND`, `ORDER BY DESC` y `LIMIT`. |
 | `tests/entrada1.txt` | válido | Forma mínima: `SELECT * FROM "ruta.csv";` y comentario de línea con `--`. |
 | `tests/entrada2.txt` | válido | `WHERE` con combinación `AND`/`OR`; ejercita la precedencia AND > OR. |
 | `tests/entrada3.txt` | válido | `WHERE` + `ORDER BY` multi-columna con `ASC`/`DESC` + `LIMIT`. |
@@ -129,7 +126,7 @@ Ejecutar primero la generación del lexer y parser (sección 6.2), luego, desde 
 ```bash
 # ----- entradas válidas -----
 
-# entrada0: consulta verbatim del informe fuente (docs/informe-fuente-tp.docx)
+# entrada0: consulta verbatim del informe fuente
 python main.py tests/entrada0.txt
 
 # entrada1: SELECT * mínimo + comentario '--'
