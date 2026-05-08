@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<h1 id="tp-antlr_compiladores-querybit">TP-ANTLR_Compiladores —
+QueryBit</h1>
+<p>Repositorio del Trabajo Parcial y Final del curso <strong>Teoría de
+Compiladores (1ACC0236)</strong> — UPC, ciclo 2026-1. Contiene el diseño
+y la implementación progresiva de <strong>QueryBit</strong>, un lenguaje
+de dominio específico (DSL) inspirado en SQL para consultar y filtrar
+archivos estructurados (<code>.csv</code>).</p>
+<h2 id="contexto-del-proyecto">1. Contexto del proyecto</h2>
+<p>El proyecto se entrega en tres hitos. Este repositorio cubre
+actualmente el <strong>Hito 1 — Trabajo Parcial</strong>:</p>
+<table>
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 34%" />
+<col style="width: 39%" />
+</colgroup>
+<thead>
+<tr>
+<th>Hito</th>
+<th>Semana</th>
+<th>Alcance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hito 1 — Trabajo Parcial</td>
+<td>7</td>
+<td>Gramática en ANTLR4, archivos <code>.g4</code>, driver mínimo, demo
+de la gramática.</td>
+</tr>
+<tr>
+<td>Hito 2 — Segundo Avance</td>
+<td>12</td>
+<td>Arquitectura del compilador, plan de validación, ~50% de la
+implementación.</td>
+</tr>
+<tr>
+<td>Hito 3 — Trabajo Final</td>
+<td>15</td>
+<td>Front end y back end completos, generación de código intermedio con
+LLVM, validación y conclusiones.</td>
+</tr>
+</tbody>
+</table>
+<p>El enunciado oficial del trabajo se encuentra en <a
+href="docs/enunciado-tp-2026-1.pdf"><code>docs/enunciado-tp-2026-1.pdf</code></a>.
+El borrador del informe escrito por el equipo (fuente Word) se conserva
+en <a
+href="docs/informe-fuente-tp.docx"><code>docs/informe-fuente-tp.docx</code></a>.</p>
+<h2 id="problemática-y-motivación">2. Problemática y motivación</h2>
+<p>Muchas tareas de análisis de datos requieren filtrar y proyectar
+columnas sobre archivos <code>.csv</code>. Las herramientas actuales —
+motores SQL, hojas de cálculo o lenguajes de propósito general —
+introducen una sobrecarga innecesaria cuando el caso de uso es realmente
+simple. <strong>QueryBit</strong> propone un DSL declarativo, mínimo y
+autoejecutable, con una sintaxis cercana a SQL
+(<code>SELECT … FROM … WHERE …</code>), pensado específicamente para ese
+escenario.</p>
+<h2 id="objetivos">3. Objetivos</h2>
+<h3 id="objetivo-general">3.1. Objetivo general</h3>
+<p>Diseñar e implementar QueryBit, un DSL para consultas y filtrado
+condicional sobre archivos estructurados, aplicando un flujo de
+compilación que incluya gramática en ANTLR4, análisis sintáctico,
+validación semántica mediante tabla de símbolos y generación de código
+intermedio con LLVM.</p>
+<h3 id="objetivos-específicos">3.2. Objetivos específicos</h3>
+<ul>
+<li>Definir una sintaxis declarativa inspirada en SQL para operaciones
+<code>FROM</code>, <code>SELECT</code>, <code>WHERE</code>,
+<code>ORDER BY</code> y <code>LIMIT</code>.</li>
+<li>Construir una gramática en ANTLR4 que reconozca correctamente las
+consultas válidas de QueryBit y reporte errores en las inválidas.</li>
+<li>Implementar — en hitos posteriores — una tabla de símbolos para
+validar el uso de columnas y la generación de código intermedio mediante
+LLVM.</li>
+</ul>
+<h2 id="estructura-del-repositorio">4. Estructura del repositorio</h2>
+<pre class="text"><code>TP-ANTLR_Compiladores/
+├── README.md                       # este archivo
+├── .gitignore                      # excluye artefactos generados por ANTLR
+├── grammar/                        # entregables de Hito 1
+│   ├── QueryBit.g4                 # gramática combinada (lexer + parser)
+│   ├── Makefile                    # genera el lexer y el parser en Python3
+│   ├── main.py                     # driver simple: imprime el árbol sintáctico
+│   ├── commands-showcase.md        # comandos para reproducir las pruebas
+│   └── tests/
+│       ├── entrada1.txt … entrada4.txt   # consultas válidas
+│       └── error1.txt   … error4.txt     # consultas inválidas
+└── docs/
+    ├── enunciado-tp-2026-1.pdf     # consigna oficial del curso
+    └── informe-fuente-tp.docx      # borrador del informe (carátula + secciones)</code></pre>
+<h2 id="gramática-hito-1">5. Gramática (Hito 1)</h2>
+<p><code>grammar/QueryBit.g4</code> es una gramática combinada (lexer +
+parser). Reconoce:</p>
+<ul>
+<li>Selección de columnas: <code>SELECT * | col1, col2, …</code>.</li>
+<li>Origen de datos: ruta entre comillas (<code>"clientes.csv"</code>) o
+identificador.</li>
+<li>Filtros booleanos con paréntesis y operadores
+<code>AND</code>/<code>OR</code>, con <strong>precedencia AND &gt;
+OR</strong> (estratificación explícita en <code>orCondition</code> /
+<code>andCondition</code>).</li>
+<li>Predicados de comparación con <code>&gt;</code>, <code>&lt;</code>,
+<code>==</code>, <code>!=</code>, <code>&gt;=</code>,
+<code>&lt;=</code>.</li>
+<li><code>ORDER BY col [ASC|DESC] (, col [ASC|DESC])*</code>.</li>
+<li><code>LIMIT n</code> con literal numérico.</li>
+<li>Palabras clave <strong>insensibles a mayúsculas</strong> (estilo
+SQL).</li>
+<li>Comentarios de una línea con <code>--</code>.</li>
+</ul>
+<h3 id="ejemplo-de-consulta-válida">Ejemplo de consulta válida</h3>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> nombre, edad</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> <span class="ot">&quot;clientes.csv&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> edad <span class="op">&gt;=</span> <span class="dv">18</span> <span class="kw">AND</span> pais <span class="op">==</span> <span class="ot">&quot;Peru&quot;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> edad <span class="kw">DESC</span>, nombre <span class="kw">ASC</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code></pre></div>
+<h2 id="cómo-ejecutar">6. Cómo ejecutar</h2>
+<h3 id="requisitos">6.1. Requisitos</h3>
+<ul>
+<li><p><strong>Java</strong> (para ejecutar
+<code>antlr-4.13.1-complete.jar</code>).</p></li>
+<li><p><strong>Python 3</strong> y el runtime
+<code>antlr4-python3-runtime</code>:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install antlr4-python3-runtime</span></code></pre></div></li>
+<li><p><strong>ANTLR 4.13.1</strong>
+(<code>antlr-4.13.1-complete.jar</code>). El <code>Makefile</code> lo
+busca por defecto en <code>/usr/local/lib/</code>; se puede sobrescribir
+con la variable <code>ANTLR_JAR</code>.</p></li>
+</ul>
+<h3 id="generar-lexer-y-parser">6.2. Generar lexer y parser</h3>
+<p>En Linux/macOS:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> grammar</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span></span></code></pre></div>
+<p>En Windows (PowerShell):</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cd</span> grammar</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>java <span class="op">-</span>jar C<span class="op">:</span>\ruta\a\antlr-4<span class="op">.</span><span class="dv">13.1</span><span class="op">-</span>complete<span class="op">.</span><span class="fu">jar</span> <span class="op">-</span>Dlanguage<span class="op">=</span>Python3 QueryBit<span class="op">.</span><span class="fu">g4</span></span></code></pre></div>
+<h3 id="ejecutar-el-driver">6.3. Ejecutar el driver</h3>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> main.py tests/entrada1.txt    <span class="co"># consulta válida — imprime árbol sintáctico</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> main.py tests/error1.txt      <span class="co"># consulta inválida — reporta error sintáctico</span></span></code></pre></div>
+<h2 id="casos-de-prueba">7. Casos de prueba</h2>
+<p>Los casos de prueba viven en <code>grammar/tests/</code>. Cada
+archivo cubre una característica distinta de la gramática. Los
+<code>entradaN.txt</code> deben parsear correctamente; los
+<code>errorN.txt</code> deben fallar de manera predecible.</p>
+<h3 id="resumen-de-cada-caso">7.1. Resumen de cada caso</h3>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 14%" />
+<col style="width: 64%" />
+</colgroup>
+<thead>
+<tr>
+<th>Archivo</th>
+<th>Tipo</th>
+<th>Característica que valida</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tests/entrada1.txt</code></td>
+<td>válido</td>
+<td>Forma mínima: <code>SELECT * FROM "ruta.csv";</code> y comentario de
+línea con <code>--</code>.</td>
+</tr>
+<tr>
+<td><code>tests/entrada2.txt</code></td>
+<td>válido</td>
+<td><code>WHERE</code> con combinación <code>AND</code>/<code>OR</code>
+— ejercita la precedencia AND &gt; OR.</td>
+</tr>
+<tr>
+<td><code>tests/entrada3.txt</code></td>
+<td>válido</td>
+<td><code>WHERE</code> + <code>ORDER BY</code> multi-columna con
+<code>ASC</code>/<code>DESC</code> + <code>LIMIT</code>.</td>
+</tr>
+<tr>
+<td><code>tests/entrada4.txt</code></td>
+<td>válido</td>
+<td>Múltiples consultas en un mismo archivo, paréntesis en
+<code>WHERE</code>, palabras clave mezcladas en mayúsculas/minúsculas,
+número decimal.</td>
+</tr>
+<tr>
+<td><code>tests/error1.txt</code></td>
+<td>inválido</td>
+<td>Falta el <code>;</code> final — el parser exige <code>SEMI</code>
+para cerrar la consulta.</td>
+</tr>
+<tr>
+<td><code>tests/error2.txt</code></td>
+<td>inválido</td>
+<td>Operador <code>=</code> no soportado — la gramática usa
+<code>==</code> para igualdad.</td>
+</tr>
+<tr>
+<td><code>tests/error3.txt</code></td>
+<td>inválido</td>
+<td><code>ORDER</code> sin <code>BY</code> — la gramática exige la
+pareja <code>ORDER BY</code>.</td>
+</tr>
+<tr>
+<td><code>tests/error4.txt</code></td>
+<td>inválido</td>
+<td>Identificador inválido (<code>1columna</code>) — los <code>ID</code>
+no pueden iniciar con dígito.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="comandos">7.2. Comandos</h3>
+<p>Ejecutar primero la generación del lexer y parser (sección 6.2),
+luego, desde <code>grammar/</code>:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ----- entradas válidas -----</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># entrada1: SELECT * mínimo + comentario &#39;--&#39;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> main.py tests/entrada1.txt</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># entrada2: WHERE con AND/OR (precedencia AND &gt; OR)</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> main.py tests/entrada2.txt</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># entrada3: ORDER BY multi-columna + LIMIT</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> main.py tests/entrada3.txt</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># entrada4: múltiples consultas, paréntesis, mayúsculas/minúsculas mezcladas</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> main.py tests/entrada4.txt</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># ----- entradas inválidas (deben reportar error de parseo) -----</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># error1: falta &#39;;&#39; al cierre</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> main.py tests/error1.txt</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co"># error2: operador &#39;=&#39; no aceptado (la gramática exige &#39;==&#39;)</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> main.py tests/error2.txt</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co"># error3: &#39;ORDER&#39; sin &#39;BY&#39;</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> main.py tests/error3.txt</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="co"># error4: identificador que comienza con dígito</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> main.py tests/error4.txt</span></code></pre></div>
+<p>Para una ejecución secuencial de todos los casos:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Linux / macOS / Git Bash</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> tests/entrada<span class="pp">*</span>.txt tests/error<span class="pp">*</span>.txt<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">&quot;===== </span><span class="va">$f</span><span class="st"> =====&quot;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">python</span> main.py <span class="st">&quot;</span><span class="va">$f</span><span class="st">&quot;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Windows PowerShell</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Get-ChildItem</span> tests\entrada<span class="op">*.</span><span class="fu">txt</span><span class="op">,</span> tests\error<span class="op">*.</span><span class="fu">txt</span> <span class="op">|</span> <span class="fu">ForEach-Object</span> <span class="op">{</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Write-Host</span> <span class="st">&quot;===== </span><span class="op">$(</span><span class="va">$_</span><span class="op">.</span><span class="fu">Name</span><span class="op">)</span><span class="st"> =====&quot;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  python main<span class="op">.</span><span class="fu">py</span> <span class="va">$_</span><span class="op">.</span><span class="fu">FullName</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>El mismo listado, con explicaciones detalladas, está en <a
+href="grammar/commands-showcase.md"><code>grammar/commands-showcase.md</code></a>.</p>
+<h2 id="equipo">8. Equipo</h2>
+<table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Apellidos y nombres</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u202216001</td>
+<td>Fong Saravia, Alexandra</td>
+</tr>
+<tr>
+<td>u202216171</td>
+<td>Huamán Cortez, Anabella Karina</td>
+</tr>
+<tr>
+<td>u202118038</td>
+<td>Conza Hualpa, Alexia Evelyn</td>
+</tr>
+<tr>
+<td>u202210236</td>
+<td>Chipoco Mejía, Jorge Piero Jesús</td>
+</tr>
+</tbody>
+</table>
+<h2 id="curso">9. Curso</h2>
+<ul>
+<li><strong>Curso:</strong> Teoría de Compiladores (1ACC0236)</li>
+<li><strong>Docente:</strong> José Luis Soncco Álvarez</li>
+<li><strong>Carrera:</strong> Ciencias de la Computación — UPC</li>
+<li><strong>Periodo:</strong> 2026-1</li>
+</ul>
+</body>
+</html>
