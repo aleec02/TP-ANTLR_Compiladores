@@ -36,7 +36,7 @@ TP-ANTLR_Compiladores/
 ├── grammar/                        # entregables de Hito 1
 │   ├── QueryBit.g4                 # gramática combinada (lexer + parser)
 │   ├── Makefile                    # genera el lexer y el parser en Python3
-│   ├── main.py                     # driver simple: imprime el árbol sintáctico
+│   ├── main.py                     # driver: tokens + árbol sintáctico + resumen
 │   ├── commands-showcase.md        # comandos para reproducir las pruebas
 │   └── tests/
 │       ├── entrada0.txt             # consulta verbatim  fuente
@@ -97,9 +97,15 @@ java -jar C:\ruta\a\antlr-4.13.1-complete.jar -Dlanguage=Python3 QueryBit.g4
 ### 6.3. Ejecutar el driver
 
 ```bash
-python main.py tests/entrada1.txt    # consulta válida; imprime árbol sintáctico
-python main.py tests/error1.txt      # consulta inválida; reporta error sintáctico
+python main.py tests/entrada1.txt    # consulta válida; imprime tokens, árbol y resumen
+python main.py tests/error1.txt      # consulta inválida; el resumen reporta errores
 ```
+
+Por cada archivo procesado, el driver emite tres bloques:
+
+1. **Tokens**: tabla `TIPO | TEXTO` con cada token producido por el lexer (omite `EOF`).
+2. **Arbol sintactico**: representación textual del árbol mediante `toStringTree`.
+3. **Resumen**: número de consultas reconocidas (`tree.query()`), número de errores sintácticos (`parser.getNumberOfSyntaxErrors()`) y un estado `OK` o `con errores`.
 
 ## 7. Casos de prueba
 
