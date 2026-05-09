@@ -116,5 +116,13 @@ ID : [a-zA-Z_] [a-zA-Z_0-9]* ;
 //  -- comentario de una línea (estilo SQL)
 LINE_COMMENT : '--' ~[\r\n]* -> skip ;
 
+//  /* ... */ comentario de bloque (puede abarcar varias líneas).
+//  BLOCK_CHAR define qué carácter es válido dentro del comentario:
+//    - cualquier carácter que no sea '*'
+//    - o un '*' seguido de algo que no sea '/' (permite asteriscos
+//      dentro del cuerpo sin cerrar el comentario prematuramente).
+fragment BLOCK_CHAR : ~[*] | '*' ~[/] ;
+BLOCK_COMMENT : '/*' BLOCK_CHAR* '*/' -> skip ;
+
 // ---------- IGNORADOS: espacios en blanco
 WS : [ \t\r\n]+ -> skip ;

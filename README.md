@@ -56,7 +56,7 @@ TP-ANTLR_Compiladores/
 - `ORDER BY col [ASC|DESC] (, col [ASC|DESC])*`.
 - `LIMIT n` con literal numérico.
 - Palabras clave **insensibles a mayúsculas** (estilo SQL).
-- Comentarios de una línea con `--`.
+- Comentarios de una línea con `--` y de bloque con `/* ... */` (multi-línea).
 
 ### Ejemplo de consulta válida
 
@@ -114,10 +114,12 @@ Los casos de prueba viven en `grammar/tests/`. Cada archivo cubre una caracterí
 | `tests/entrada2.txt` | válido | `WHERE` con combinación `AND`/`OR`; ejercita la precedencia AND > OR. |
 | `tests/entrada3.txt` | válido | `WHERE` + `ORDER BY` multi-columna con `ASC`/`DESC` + `LIMIT`. |
 | `tests/entrada4.txt` | válido | Múltiples consultas en un mismo archivo, paréntesis en `WHERE`, palabras clave mezcladas en mayúsculas/minúsculas, número decimal. |
+| `tests/entrada5.txt` | válido | Comentarios de bloque `/* ... */` multi-línea, intercalados dentro de la consulta y combinados con comentarios `--`. |
 | `tests/error1.txt`   | inválido | Falta el `;` final; el parser exige `SEMI` para cerrar la consulta. |
 | `tests/error2.txt`   | inválido | Operador `=` no soportado; la gramática usa `==` para igualdad. |
 | `tests/error3.txt`   | inválido | `ORDER` sin `BY`; la gramática exige la pareja `ORDER BY`. |
 | `tests/error4.txt`   | inválido | Identificador inválido (`1columna`); los `ID` no pueden iniciar con dígito. |
+| `tests/error5.txt`   | inválido | Comentario de bloque `/*` sin cierre `*/`; el lexer no encuentra el fin. |
 
 ### 7.2. Comandos
 
@@ -141,6 +143,9 @@ python main.py tests/entrada3.txt
 # entrada4: múltiples consultas, paréntesis, mayúsculas/minúsculas mezcladas
 python main.py tests/entrada4.txt
 
+# entrada5: comentarios de bloque /* ... */ multi-línea
+python main.py tests/entrada5.txt
+
 
 # ----- entradas inválidas (deben reportar error de parseo) -----
 
@@ -155,6 +160,9 @@ python main.py tests/error3.txt
 
 # error4: identificador que comienza con dígito
 python main.py tests/error4.txt
+
+# error5: comentario de bloque sin cerrar
+python main.py tests/error5.txt
 ```
 
 Para una ejecución secuencial de todos los casos:

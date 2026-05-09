@@ -58,6 +58,11 @@ python3 main.py tests/entrada3.txt
 python3 main.py tests/entrada4.txt
 ```
 
+```bash
+# Comentarios de bloque /* ... */ multi-línea, intercalados dentro de la consulta
+python3 main.py tests/entrada5.txt
+```
+
 ### Entradas con errores
 
 ```bash
@@ -78,6 +83,11 @@ python3 main.py tests/error3.txt
 ```bash
 # Identificador inválido: no puede comenzar con dígito
 python3 main.py tests/error4.txt
+```
+
+```bash
+# Comentario de bloque /* sin cierre */; el lexer no encuentra el fin
+python3 main.py tests/error5.txt
 ```
 
 ## Limpieza
