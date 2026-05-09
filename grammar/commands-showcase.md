@@ -1,6 +1,6 @@
 # QueryBit – Commands Showcase
 
-Conjunto mínimo de comandos para regenerar el lexer y el parser desde la gramática y ejecutar las pruebas incluidas en `tests/`.
+Conjunto mínimo de comandos para regenerar el lexer y el parser desde la gramática y ejecutar las pruebas incluidas en `tests/`. Se recomienda para una mayor facilidad ejecutar los comandos es una VM tal como Oracle VirtualBox usando Linux/Ubuntu para ejecutar efectivamente los comandos.
 
 ## Setup: regenerar lexer y parser desde la gramática
 
@@ -27,16 +27,14 @@ En Windows, ejecutar el equivalente con `java` directamente:
 java -jar C:\ruta\a\antlr-4.13.1-complete.jar -Dlanguage=Python3 QueryBit.g4
 ```
 
+
 ## Ejecución del driver
 
 El driver imprime el árbol sintáctico en formato textual (`toStringTree`) sobre la regla inicial `program`.
 
 ### Entradas válidas
 
-```bash
-# Consulta original del informe .docx
-python3 main.py tests/entrada0.txt
-```
+
 
 ```bash
 # Consulta básica: SELECT *  desde un archivo CSV
@@ -58,10 +56,6 @@ python3 main.py tests/entrada3.txt
 python3 main.py tests/entrada4.txt
 ```
 
-```bash
-# Comentarios de bloque /* ... */ multi-línea, intercalados dentro de la consulta
-python3 main.py tests/entrada5.txt
-```
 
 ### Entradas con errores
 
@@ -85,10 +79,6 @@ python3 main.py tests/error3.txt
 python3 main.py tests/error4.txt
 ```
 
-```bash
-# Comentario de bloque /* sin cierre */; el lexer no encuentra el fin
-python3 main.py tests/error5.txt
-```
 
 ## Limpieza
 
