@@ -1,12 +1,12 @@
 # QueryBit - Commands Showcase
 
-Comandos para regenerar el lexer/parser desde la gramatica y ejecutar las pruebas. Se recomienda ejecutarlos en Ubuntu via VM Oracle VirtualBox accediendo al proyecto desde la carpeta compartida.
+Comandos para regenerar el lexer/parser desde la gramática y ejecutar las pruebas. Se recomienda ejecutarlos en Ubuntu via VM Oracle VirtualBox accediendo al proyecto desde la carpeta compartida.
 
 ---
 
 ## Ubuntu (VM Oracle VirtualBox)
 
-### Si uv no esta en PATH despues de instalar
+### Si uv no está en PATH despues de instalar
 
 ```bash
 export PATH="$HOME/.local/bin:$PATH"
@@ -37,7 +37,7 @@ cd grammar
 make
 ```
 
-Invoca `java -jar /usr/local/lib/antlr-4.13.1-complete.jar` directamente. Si el jar no esta en esa ruta, descargarlo con:
+Invoca `java -jar /usr/local/lib/antlr-4.13.1-complete.jar` directamente. Si el jar no está en esa ruta, descargarlo con:
 
 ```bash
 curl -o /usr/local/lib/antlr-4.13.1-complete.jar \
@@ -53,7 +53,7 @@ cd grammar
 export PYTHONPATH=gen
 ```
 
-#### Entradas validas
+#### Entradas válidas
 
 ```bash
 python3 main.py tests/entrada0.txt   # SELECT * minimo
@@ -64,17 +64,17 @@ python3 main.py tests/entrada4.txt   # multiples consultas, case insensitive
 python3 main.py tests/entrada5.txt   # comentarios de bloque /* ... */
 ```
 
-#### Errores sintacticos
+#### Errores sintácticos
 
 ```bash
 python3 main.py tests/sint_error1.txt   # falta ';' al final
 python3 main.py tests/sint_error2.txt   # operador '=' no soportado (usar '==')
 python3 main.py tests/sint_error3.txt   # ORDER sin BY
-python3 main.py tests/sint_error4.txt   # identificador comienza con digito
+python3 main.py tests/sint_error4.txt   # identificador comienza con dígito
 python3 main.py tests/sint_error5.txt   # comentario de bloque sin cerrar
 ```
 
-#### Errores semanticos
+#### Errores semánticos
 
 ```bash
 python3 main.py tests/sem_error1.txt    # columna duplicada en SELECT
@@ -87,10 +87,7 @@ python3 main.py tests/sem_error5.txt    # ruta FROM vacia
 #### Todos los casos de una vez
 
 ```bash
-for f in tests/entrada*.txt tests/sint_error*.txt tests/sem_error*.txt; do
-    echo "===== $(basename $f) ====="
-    python3 main.py "$f"
-done
+echo "━━━━━━━━━━ ENTRADAS VÁLIDAS ━━━━━━━━━━" && for f in tests/entrada*.txt; do echo "  ▒▒ $(basename $f)"; python3 main.py "$f"; echo; done && echo "━━━━━━━━━━ ERRORES SINTÁCTICOS ━━━━━━━━━━" && for f in tests/sint_error*.txt; do echo "  ▒▒ $(basename $f)"; python3 main.py "$f"; echo; done && echo "━━━━━━━━━━ ERRORES SEMÁNTICOS ━━━━━━━━━━" && for f in tests/sem_error*.txt; do echo "  ▒▒ $(basename $f)"; python3 main.py "$f"; echo; done
 ```
 
 ### Limpiar artefactos generados
@@ -119,7 +116,7 @@ cd grammar
 java -jar C:\ruta\a\antlr-4.13.1-complete.jar -Dlanguage=Python3 -o gen QueryBit.g4
 ```
 
-Si `antlr4` esta en el PATH:
+Si `antlr4` está en el PATH:
 
 ```powershell
 antlr4 -Dlanguage=Python3 -o gen QueryBit.g4
@@ -132,7 +129,7 @@ cd grammar
 $env:PYTHONPATH = "gen"
 ```
 
-#### Entradas validas
+#### Entradas válidas
 
 ```powershell
 python main.py tests\entrada0.txt
@@ -143,7 +140,7 @@ python main.py tests\entrada4.txt
 python main.py tests\entrada5.txt
 ```
 
-#### Errores sintacticos
+#### Errores sintácticos
 
 ```powershell
 python main.py tests\sint_error1.txt
@@ -153,7 +150,7 @@ python main.py tests\sint_error4.txt
 python main.py tests\sint_error5.txt
 ```
 
-#### Errores semanticos
+#### Errores semánticos
 
 ```powershell
 python main.py tests\sem_error1.txt
@@ -166,10 +163,7 @@ python main.py tests\sem_error5.txt
 #### Todos los casos de una vez
 
 ```powershell
-gci tests\entrada*.txt, tests\sint_error*.txt, tests\sem_error*.txt | % {
-    Write-Host "===== $($_.Name) ====="
-    python main.py $_.FullName
-}
+Write-Host "━━━━━━━━━━ ENTRADAS VÁLIDAS ━━━━━━━━━━"; gci tests\entrada*.txt | % { Write-Host "  ▒▒ $($_.Name)"; python main.py $_.FullName; "" }; Write-Host "━━━━━━━━━━ ERRORES SINTÁCTICOS ━━━━━━━━━━"; gci tests\sint_error*.txt | % { Write-Host "  ▒▒ $($_.Name)"; python main.py $_.FullName; "" }; Write-Host "━━━━━━━━━━ ERRORES SEMÁNTICOS ━━━━━━━━━━"; gci tests\sem_error*.txt | % { Write-Host "  ▒▒ $($_.Name)"; python main.py $_.FullName; "" }
 ```
 
 ### Limpiar artefactos generados

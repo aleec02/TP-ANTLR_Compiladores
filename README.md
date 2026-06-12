@@ -1,6 +1,6 @@
 # TP-ANTLR\_Compiladores: QueryBit
 
-Repositorio del Trabajo Parcial y Final del curso **Teoría de Compiladores (1ACC0236)**, UPC, ciclo 2026-1. Contiene el diseño e implementación progresiva de **QueryBit**, un lenguaje de dominio especifico (DSL) inspirado en SQL para consultar y filtrar archivos estructurados (`.csv`).
+Repositorio del Trabajo Parcial y Final del curso **Teoría de Compiladores (1ACC0236)**, UPC, ciclo 2026-1. Contiene el diseño e implementación progresiva de **QueryBit**, un lenguaje de dominio específico (DSL) inspirado en SQL para consultar y filtrar archivos estructurados (`.csv`).
 
 ## 1. Contexto del proyecto
 
@@ -8,24 +8,24 @@ El proyecto se entrega en tres hitos. Este repositorio implementa el front-end d
 
 | Hito | Semana | Alcance |
 |------|--------|---------|
-| Hito 1: Trabajo Parcial | 7 | Gramatica ANTLR4, archivos `.g4`, driver minimo, demo de la gramatica. |
+| Hito 1: Trabajo Parcial | 7 | gramática ANTLR4, archivos `.g4`, driver mínimo, demo de la gramática. |
 | Hito 2: Segundo Avance | 12 | Arquitectura del compilador, analizador semántico, ~50% de la implementación. |
-| Hito 3: Trabajo Final | 15 | Frontend y backend completos, generación de codigo intermedio con LLVM, validación y conclusiones. |
+| Hito 3: Trabajo Final | 15 | Frontend y backend completos, generación de codigo intermedio con LLVM, válidación y conclusiones. |
 
 
-## 2. Problemática y motivacion
+## 2. Problemática y motivación
 
-Muchas tareas de analisis de datos requieren filtrar y proyectar columnas sobre archivos `.csv`. Las herramientas actuales (motores SQL, hojas de calculo o lenguajes de proposito general) introducen una sobrecarga innecesaria cuando el caso de uso es realmente simple. **QueryBit** propone un DSL declarativo, minimo y autoejecutable, con una sintaxis cercana a SQL (`SELECT ... FROM ... WHERE ...`), pensado específicamente para ese escenario.
+Muchas tareas de análisis de datos requieren filtrar y proyectar columnas sobre archivos `.csv`. Las herramientas actuales (motores SQL, hojas de cálculo o lenguajes de propósito general) introducen una sobrecarga innecesaria cuando el caso de uso es realmente simple. **QueryBit** propone un DSL declarativo, minimo y autoejecutable, con una sintaxis cercana a SQL (`SELECT ... FROM ... WHERE ...`), pensado específicamente para ese escenario.
 
 ## 3. Objetivos
 
 ### 3.1. Objetivo general
-Disenar e implementar QueryBit, un DSL para consultas y filtrado condicional sobre archivos estructurados, aplicando un flujo de compilación que incluya gramatica en ANTLR4, analisis sintactico, validación semántica y generación de codigo intermedio con LLVM.
+Disenar e implementar QueryBit, un DSL para consultas y filtrado condicional sobre archivos estructurados, aplicando un flujo de compilación que incluya gramática en ANTLR4, análisis sintáctico, válidación semántica y generación de codigo intermedio con LLVM.
 
-### 3.2. Objetivos especificos
+### 3.2. Objetivos específicos
 - Definir una sintaxis declarativa inspirada en SQL para operaciones `FROM`, `SELECT`, `WHERE`, `ORDER BY` y `LIMIT`.
-- Construir una gramatica en ANTLR4 que reconozca correctamente las consultas válidas de QueryBit y reporte errores en las invalidas.
-- Implementar un analizador semantico que detecte errores que escapan el poder expresivo de las CFGs.
+- Construir una gramática en ANTLR4 que reconozca correctamente las consultas válidas de QueryBit y reporte errores en las inválidas.
+- Implementar un analizador semántico que detecte errores que escapan el poder expresivo de las CFGs.
 - Implementar, en el hito final, generación de código intermedio mediante LLVM.
 
 ## 4. Estructura del repositorio
@@ -35,10 +35,10 @@ TP-ANTLR_Compiladores/
 ├── README.md
 ├── .gitignore
 ├── grammar/
-│   ├── QueryBit.g4          # gramatica combinada (lexer + parser)
+│   ├── QueryBit.g4          # gramática combinada (lexer + parser)
 │   ├── Makefile             # genera lexer y parser en Python3 dentro de gen/
-│   ├── main.py              # driver: lexer -> parser -> semantico -> resumen
-│   ├── SemanticVisitor.py   # analizador semantico (visitor sobre el AST)
+│   ├── main.py              # driver: lexer -> parser -> semántico -> resumen
+│   ├── SemanticVisitor.py   # analizador semántico (visitor sobre el AST)
 │   ├── commands-showcase.md # comandos para reproducir las pruebas
 │   ├── gen/                 # artefactos generados por ANTLR (ignorados por git)
 │   └── tests/
@@ -47,9 +47,9 @@ TP-ANTLR_Compiladores/
 │       └── error1.txt   ... error5.txt
 ```
 
-## 5. Gramatica
+## 5. Gramática
 
-`grammar/QueryBit.g4` es una gramatica combinada (lexer + parser). Reconoce:
+`grammar/QueryBit.g4` es una gramática combinada (lexer + parser). Reconoce:
 
 - Selección de columnas: `SELECT * | col1, col2, ...`
 - Origen de datos: ruta entre comillas (`"clientes.csv"`) o identificador.
@@ -60,9 +60,9 @@ TP-ANTLR_Compiladores/
 - Palabras clave **insensibles a mayusculas** (estilo SQL).
 - Comentarios de una linea con `--` y de bloque con `/* ... */`.
 
-Todos los operadores EBNF (`?`, `*`, `+`) han sido eliminados de las reglas del parser y reemplazados con recursion explicita y producciones epsilon, para respetar el formalismo de las gramaticas libres de contexto. En las reglas del lexer si se usan operadores de Kleene, ya que el lexer opera sobre lenguajes regulares donde estos operadores son fundamentales.
+Todos los operadores EBNF (`?`, `*`, `+`) han sido eliminados de las reglas del parser y reemplazados con recursion explicita y producciones epsilon, para respetar el formalismo de las gramáticas libres de contexto. En las reglas del lexer si se usan operadores de Kleene, ya que el lexer opera sobre lenguajes regulares donde estos operadores son fundamentales.
 
-### Ejemplo de consulta valida
+### Ejemplo de consulta válida
 
 ```sql
 SELECT nombre, edad
@@ -72,19 +72,19 @@ ORDER BY edad DESC, nombre ASC
 LIMIT 10;
 ```
 
-## 6. Analizador semantico
+## 6. Analizador semántico
 
-`grammar/SemanticVisitor.py` recorre el AST producido por el parser y valida restricciones que las CFGs no pueden expresar:
+`grammar/SemanticVisitor.py` recorre el AST producido por el parser y válida restricciones que las CFGs no pueden expresar:
 
 | Check | Descripción |
 |-------|-------------|
-| Columnas duplicadas en SELECT | `SELECT nombre, nombre FROM ...` es invalido |
-| Columnas duplicadas en ORDER BY | `ORDER BY edad ASC, edad DESC` es invalido |
-| Source FROM vacio | `FROM ""` no tiene sentido como ruta de archivo |
+| Columnas duplicadas en SELECT | `SELECT nombre, nombre FROM ...` es inválida |
+| Columnas duplicadas en ORDER BY | `ORDER BY edad ASC, edad DESC` es inválida |
+| Source FROM vacía | `FROM ""` no tiene sentido como ruta de archivo |
 | Operador relacional con STRING | `>`, `<`, `>=`, `<=` requieren un valor numerico |
-| LIMIT no entero o menor a 1 | `LIMIT 0`, `LIMIT 10.5` son invalidos |
+| LIMIT no entero o menor a 1 | `LIMIT 0`, `LIMIT 10.5` son inválidas |
 
-## 7. Como ejecutar
+## 7. Cómo ejecutar
 
 ### 7.1. Requisitos
 
@@ -111,7 +111,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 export PATH="$HOME/.local/bin:$PATH"
 ```
 
-#### Configuracion del proyecto (una sola vez)
+#### Configuración del proyecto (una sola vez)
 
 VBoxSF no soporta symlinks, por lo que el venv debe crearse fuera de la carpeta compartida. Se usa `~/envs/` como directorio central para todos los entornos uv:
 
@@ -122,7 +122,7 @@ source ~/envs/querybit/bin/activate
 uv pip install antlr4-python3-runtime==4.13.2 antlr4-tools==0.2.2
 ```
 
-#### Cada nueva sesion de shell
+#### Cada nueva sesión de shell
 
 ```bash
 source ~/envs/querybit/bin/activate
@@ -143,7 +143,7 @@ curl -o /usr/local/lib/antlr-4.13.1-complete.jar \
   https://www.antlr.org/download/antlr-4.13.1-complete.jar
 ```
 
-Los archivos generados se depositan en `grammar/gen/`.
+Los archivos generados se localizan en `grammar/gen/`.
 
 #### Ejecutar pruebas
 
@@ -153,13 +153,10 @@ export PYTHONPATH=gen
 python3 main.py tests/entrada1.txt
 ```
 
-Para todos los casos de una vez:
+Para todos los casos en un comando oneliner:
 
 ```bash
-for f in tests/entrada*.txt tests/error*.txt; do
-    echo "===== $(basename $f) ====="
-    python3 main.py "$f"
-done
+echo "━━━━━━━━━━ ENTRADAS VÁLIDAS ━━━━━━━━━━" && for f in tests/entrada*.txt; do echo "  ▒▒ $(basename $f)"; python3 main.py "$f"; echo; done && echo "━━━━━━━━━━ ERRORES SINTÁCTICOS ━━━━━━━━━━" && for f in tests/sint_error*.txt; do echo "  ▒▒ $(basename $f)"; python3 main.py "$f"; echo; done && echo "━━━━━━━━━━ ERRORES SEMÁNTICOS ━━━━━━━━━━" && for f in tests/sem_error*.txt; do echo "  ▒▒ $(basename $f)"; python3 main.py "$f"; echo; done
 ```
 
 ---
@@ -200,7 +197,7 @@ cd grammar
 java -jar C:\ruta\a\antlr-4.13.1-complete.jar -Dlanguage=Python3 -o gen QueryBit.g4
 ```
 
-Si `antlr4` esta disponible como comando en el PATH:
+Si `antlr4` está disponible como comando en el PATH:
 
 ```powershell
 antlr4 -Dlanguage=Python3 -o gen QueryBit.g4
@@ -214,13 +211,10 @@ $env:PYTHONPATH = "gen"
 python main.py tests\entrada1.txt
 ```
 
-Para todos los casos de una vez:
+Para todos los casos en un comando oneliner:
 
 ```powershell
-gci tests\entrada*.txt, tests\error*.txt | % {
-    Write-Host "===== $($_.Name) ====="
-    python main.py $_.FullName
-}
+Write-Host "━━━━━━━━━━ ENTRADAS VÁLIDAS ━━━━━━━━━━"; gci tests\entrada*.txt | % { Write-Host "  ▒▒ $($_.Name)"; python main.py $_.FullName; "" }; Write-Host "━━━━━━━━━━ ERRORES SINTÁCTICOS ━━━━━━━━━━"; gci tests\sint_error*.txt | % { Write-Host "  ▒▒ $($_.Name)"; python main.py $_.FullName; "" }; Write-Host "━━━━━━━━━━ ERRORES SEMÁNTICOS ━━━━━━━━━━"; gci tests\sem_error*.txt | % { Write-Host "  ▒▒ $($_.Name)"; python main.py $_.FullName; "" }
 ```
 
 ---
@@ -230,9 +224,9 @@ gci tests\entrada*.txt, tests\error*.txt | % {
 Para una entrada válida:
 
 ```
-Errores sintacticos:   ninguno
+Errores sintácticos:   ninguno
 
-Errores semanticos:    ninguno
+Errores semánticos:    ninguno
 
 Consultas: 1  |  Total errores: 0  |  Estado: OK
 ```
@@ -240,33 +234,33 @@ Consultas: 1  |  Total errores: 0  |  Estado: OK
 Para una entrada con errores:
 
 ```
-Errores sintacticos (1):
+Errores sintácticos (1):
   [linea 2, col 0] mismatched input '<EOF>' expecting SEMI
 
-Errores semanticos:    ninguno
+Errores semánticos:    ninguno
 
 Consultas: 1  |  Total errores: 1  |  Estado: con errores
 ```
 
 ## 8. Casos de prueba
 
-Los casos de prueba viven en `grammar/tests/`. Los `entradaN.txt` deben parsear y pasar el analizador semantico sin errores. Los `sint_errorN.txt` deben fallar con error sintactico. Los `sem_errorN.txt` deben fallar con error semantico.
+Los casos de prueba viven en `grammar/tests/`. Los `entradaN.txt` deben parsear y pasar el analizador semántico sin errores. Los `sint_errorN.txt` deben fallar con error sintáctico. Los `sem_errorN.txt` deben fallar con error semántico.
 
-| Archivo | Tipo | Caracteristica que valida |
+| Archivo | Tipo | Caracteristica que válida |
 |---------|------|---------------------------|
-| `entrada0.txt`    | valido | Forma minima: `SELECT * FROM "ruta.csv";` |
-| `entrada1.txt`    | valido | `WHERE` con `AND`/`OR` y comentario `--` |
-| `entrada2.txt`    | valido | Precedencia AND > OR |
-| `entrada3.txt`    | valido | `ORDER BY` multi-columna + `LIMIT` |
-| `entrada4.txt`    | valido | Multiples consultas, parentesis, palabras clave en mayusculas/minusculas mezcladas |
-| `entrada5.txt`    | valido | Comentarios de bloque `/* ... */` multi-linea |
-| `sint_error1.txt` | error sintactico | Falta el `;` final |
-| `sint_error2.txt` | error sintactico | Operador `=` no soportado (se requiere `==`) |
-| `sint_error3.txt` | error sintactico | `ORDER` sin `BY` |
-| `sint_error4.txt` | error sintactico | Identificador que comienza con digito |
-| `sint_error5.txt` | error sintactico | Comentario de bloque sin cerrar |
-| `sem_error1.txt`  | error semantico | Columna duplicada en SELECT |
-| `sem_error2.txt`  | error semantico | Operador relacional `>` con valor STRING |
-| `sem_error3.txt`  | error semantico | LIMIT con valor decimal |
-| `sem_error4.txt`  | error semantico | Columna duplicada en ORDER BY |
-| `sem_error5.txt`  | error semantico | Ruta FROM vacia |
+| `entrada0.txt`    | válida | Forma mínima: `SELECT * FROM "ruta.csv";` |
+| `entrada1.txt`    | válida | `WHERE` con `AND`/`OR` y comentario `--` |
+| `entrada2.txt`    | válida | Precedencia AND > OR |
+| `entrada3.txt`    | válida | `ORDER BY` multi-columna + `LIMIT` |
+| `entrada4.txt`    | válida | Múltiples consultas, parentesis, palabras clave en mayusculas/minusculas mezcladas |
+| `entrada5.txt`    | válida | Comentarios de bloque `/* ... */` multi-linea |
+| `sint_error1.txt` | error sintáctico | Falta el `;` final |
+| `sint_error2.txt` | error sintáctico | Operador `=` no soportado (se requiere `==`) |
+| `sint_error3.txt` | error sintáctico | `ORDER` sin `BY` |
+| `sint_error4.txt` | error sintáctico | Identificador que comienza con dígito |
+| `sint_error5.txt` | error sintáctico | Comentario de bloque sin cerrar |
+| `sem_error1.txt`  | error semántico | Columna duplicada en SELECT |
+| `sem_error2.txt`  | error semántico | Operador relacional `>` con valor STRING |
+| `sem_error3.txt`  | error semántico | LIMIT con valor decimal |
+| `sem_error4.txt`  | error semántico | Columna duplicada en ORDER BY |
+| `sem_error5.txt`  | error semántico | Ruta FROM vacía |
