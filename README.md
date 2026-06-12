@@ -250,18 +250,23 @@ Consultas: 1  |  Total errores: 1  |  Estado: con errores
 
 ## 8. Casos de prueba
 
-Los casos de prueba viven en `grammar/tests/`. Los `entradaN.txt` deben parsear y pasar el analizador semantico sin errores. Los `errorN.txt` deben fallar de manera predecible.
+Los casos de prueba viven en `grammar/tests/`. Los `entradaN.txt` deben parsear y pasar el analizador semantico sin errores. Los `sint_errorN.txt` deben fallar con error sintactico. Los `sem_errorN.txt` deben fallar con error semantico.
 
 | Archivo | Tipo | Caracteristica que valida |
 |---------|------|---------------------------|
-| `entrada0.txt` | valido | Forma minima: `SELECT * FROM "ruta.csv";` |
-| `entrada1.txt` | valido | `WHERE` con `AND`/`OR` y comentario `--` |
-| `entrada2.txt` | valido | Precedencia AND > OR |
-| `entrada3.txt` | valido | `ORDER BY` multi-columna + `LIMIT` |
-| `entrada4.txt` | valido | Multiples consultas, parentesis, palabras clave en mayusculas/minusculas mezcladas |
-| `entrada5.txt` | valido | Comentarios de bloque `/* ... */` multi-linea |
-| `error1.txt`   | invalido | Falta el `;` final |
-| `error2.txt`   | invalido | Operador `=` no soportado (se requiere `==`) |
-| `error3.txt`   | invalido | `ORDER` sin `BY` |
-| `error4.txt`   | invalido | Identificador que comienza con digito |
-| `error5.txt`   | invalido | Comentario de bloque sin cerrar |
+| `entrada0.txt`    | valido | Forma minima: `SELECT * FROM "ruta.csv";` |
+| `entrada1.txt`    | valido | `WHERE` con `AND`/`OR` y comentario `--` |
+| `entrada2.txt`    | valido | Precedencia AND > OR |
+| `entrada3.txt`    | valido | `ORDER BY` multi-columna + `LIMIT` |
+| `entrada4.txt`    | valido | Multiples consultas, parentesis, palabras clave en mayusculas/minusculas mezcladas |
+| `entrada5.txt`    | valido | Comentarios de bloque `/* ... */` multi-linea |
+| `sint_error1.txt` | error sintactico | Falta el `;` final |
+| `sint_error2.txt` | error sintactico | Operador `=` no soportado (se requiere `==`) |
+| `sint_error3.txt` | error sintactico | `ORDER` sin `BY` |
+| `sint_error4.txt` | error sintactico | Identificador que comienza con digito |
+| `sint_error5.txt` | error sintactico | Comentario de bloque sin cerrar |
+| `sem_error1.txt`  | error semantico | Columna duplicada en SELECT |
+| `sem_error2.txt`  | error semantico | Operador relacional `>` con valor STRING |
+| `sem_error3.txt`  | error semantico | LIMIT con valor decimal |
+| `sem_error4.txt`  | error semantico | Columna duplicada en ORDER BY |
+| `sem_error5.txt`  | error semantico | Ruta FROM vacia |

@@ -64,20 +64,30 @@ python3 main.py tests/entrada4.txt   # multiples consultas, case insensitive
 python3 main.py tests/entrada5.txt   # comentarios de bloque /* ... */
 ```
 
-#### Entradas con errores
+#### Errores sintacticos
 
 ```bash
-python3 main.py tests/error1.txt     # falta ';' al final
-python3 main.py tests/error2.txt     # operador '=' no soportado (usar '==')
-python3 main.py tests/error3.txt     # ORDER sin BY
-python3 main.py tests/error4.txt     # identificador comienza con digito
-python3 main.py tests/error5.txt     # comentario de bloque sin cerrar
+python3 main.py tests/sint_error1.txt   # falta ';' al final
+python3 main.py tests/sint_error2.txt   # operador '=' no soportado (usar '==')
+python3 main.py tests/sint_error3.txt   # ORDER sin BY
+python3 main.py tests/sint_error4.txt   # identificador comienza con digito
+python3 main.py tests/sint_error5.txt   # comentario de bloque sin cerrar
+```
+
+#### Errores semanticos
+
+```bash
+python3 main.py tests/sem_error1.txt    # columna duplicada en SELECT
+python3 main.py tests/sem_error2.txt    # operador relacional con STRING
+python3 main.py tests/sem_error3.txt    # LIMIT con valor decimal
+python3 main.py tests/sem_error4.txt    # columna duplicada en ORDER BY
+python3 main.py tests/sem_error5.txt    # ruta FROM vacia
 ```
 
 #### Todos los casos de una vez
 
 ```bash
-for f in tests/entrada*.txt tests/error*.txt; do
+for f in tests/entrada*.txt tests/sint_error*.txt tests/sem_error*.txt; do
     echo "===== $(basename $f) ====="
     python3 main.py "$f"
 done
@@ -133,20 +143,30 @@ python main.py tests\entrada4.txt
 python main.py tests\entrada5.txt
 ```
 
-#### Entradas con errores
+#### Errores sintacticos
 
 ```powershell
-python main.py tests\error1.txt
-python main.py tests\error2.txt
-python main.py tests\error3.txt
-python main.py tests\error4.txt
-python main.py tests\error5.txt
+python main.py tests\sint_error1.txt
+python main.py tests\sint_error2.txt
+python main.py tests\sint_error3.txt
+python main.py tests\sint_error4.txt
+python main.py tests\sint_error5.txt
+```
+
+#### Errores semanticos
+
+```powershell
+python main.py tests\sem_error1.txt
+python main.py tests\sem_error2.txt
+python main.py tests\sem_error3.txt
+python main.py tests\sem_error4.txt
+python main.py tests\sem_error5.txt
 ```
 
 #### Todos los casos de una vez
 
 ```powershell
-gci tests\entrada*.txt, tests\error*.txt | % {
+gci tests\entrada*.txt, tests\sint_error*.txt, tests\sem_error*.txt | % {
     Write-Host "===== $($_.Name) ====="
     python main.py $_.FullName
 }
